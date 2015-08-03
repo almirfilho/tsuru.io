@@ -1,78 +1,6 @@
 // -----------------------------------------------------------------------------
-//
-// Functions
-//
-// Application functions.
-//
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Directions
-// -----------------------------------------------------------------------------
-
-@function direction($direction) {
-
-	@if ($direction == "ltr") {
-		@return left;
-	} @else if ($direction == "rtl") {
-		@return right;
-	}
-
-}
-
-@function opposite-direction($direction) {
-
-	@if direction($direction) == right {
-		@return left;
-	} @else {
-		@return right;
-	}
-
-}
-
-// -----------------------------------------------------------------------------
 // Layout
 // -----------------------------------------------------------------------------
-
-@function snap($value) {
-	$above: 0;
-	$below: 0;
-	$counter: 0;
-	$found: false;
-	$result: 0;
-
-	@while ($found == false) {
-		$current: $counter * $proportional-base;
-
-		@if ($current == $value) {
-			$result: $value;
-			$found: true;
-		} @else {
-
-			@if ($current < $value) {
-				$below: $current;
-			} @else {
-				$above: $current;
-				$found: true;
-			}
-
-			@if ($above != 0) and ($found == true) {
-
-				@if (($above - $value) >= ($value - $below)) {
-					$result: $below;
-				} @else {
-					$result: $above;
-				}
-
-			}
-
-		}
-
-		$counter: $counter + 1;
-	}
-
-	@return if($relative, relative($result), $result);
-}
 
 @function proportional($multiple: 1) {
 	$proportion: $multiple * $proportional-base;
@@ -102,15 +30,6 @@
 // -----------------------------------------------------------------------------
 // Units
 // -----------------------------------------------------------------------------
-
-@function em($value, $context: $font-size) {
-
-	@if (type-of($value) == "number") and (unit($value) == "px") {
-		$value: ($value / $context) * 1em;
-	}
-
-	@return $value;
-}
 
 @function rem($value, $context: $font-size) {
 

@@ -11,7 +11,7 @@
 
 %column {
   @include respond-to(medium) {
-  	float: direction($reading-direction);
+  	float: left;
   }
 }
 
@@ -28,13 +28,4 @@
 %section {
 	clear: both;
 	display: block;
-}
-
-// -----------------------------------------------------------------------------
-// Mixins
-// -----------------------------------------------------------------------------
-
-@mixin gutter($value) {
-	padding-left: relative($value / 2);
-	padding-right: relative($value / 2);
 }
